@@ -131,7 +131,7 @@ fn main() -> color_eyre::Result<()> {
             }
             disk.update_partitions(parts)?;
             let mut file = disk.write()?;
-            file.seek(SeekFrom::Start(best_part.length))?;
+            file.seek(SeekFrom::Start(best_part.start))?;
             let img = std::fs::read(img)?;
             if img.len() as u64 > best_part.length {
                 return Err(eyre!(
